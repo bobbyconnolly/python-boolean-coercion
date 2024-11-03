@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<!-- [Previous head/style section remains the same] -->
+<head>
+    <title>Detective Boolean's Guide to Type Coercion</title>
+    <style>
+        /* [Previous styles remain the same] */
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            background: #f7f7f7;
+            color: #333;
+        }
+        .story {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 1rem 0;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            font-family: monospace;
+        }
+        .jupyter-cell {
+            border-left: 4px solid #2196F3;
+            margin: 1rem 0;
+            padding-left: 1rem;
+            background: #fff;
+        }
+        .exercise {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border: 1px solid #2196F3;
+        }
+        .key-point {
+            background: #fff3e0;
+            padding: 1rem;
+            border-left: 4px solid #ff9800;
+            margin: 1rem 0;
+        }
+        .outcome {
+            background: #e8f5e9;
+            padding: 1rem;
+            border-left: 4px solid #4caf50;
+            margin: 1rem 0;
+        }
+        .keyword { color: #569cd6; }
+        .string { color: #ce9178; }
+        .comment { color: #6a9955; }
+        .output { color: #9cdcfe; }
+        h2 { 
+            color: #1976D2;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Detective Boolean's Guide to Type Coercion</h1>
+    
+    <div class="story">
+        <p>Meet Detective Boolean, Python's truth-seeking investigator. Their specialty? Determining what's True and what's False in the Python world. Today, they're teaching new recruits about how Python automatically converts different types to True or False in if statements.</p>
+    </div>
+
+    <h2>Case File #1: The Empty vs Non-Empty Mystery</h2>
+    <div class="story">
+        <p>"Rookies," Detective Boolean begins, "let me show you how Python handles empty and non-empty containers in if statements. Think of them like rooms - they're either occupied or vacant."</p>
+    </div>
+    
+    <div class="code-block">
+        <span class="comment"># First, let's create some empty containers</span><br>
+        empty_list = []<br>
+        empty_dict = {}<br>
+        empty_tuple = ()<br>
+        <br>
+        <span class="comment"># And some containers with stuff in them</span><br>
+        full_list = [1, 2, 3]<br>
+        full_dict = {"key": "value"}<br>
+        full_tuple = (42,)<br>
+        <br>
+        <span class="comment"># Let's try an if statement with an empty list:</span><br>
+        <span class="keyword">if</span> empty_list:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"This line never executes!"</span>)
+    </div>
+
+    <div class="outcome">
+        <strong>What actually happens:</strong>
+        <ul>
+            <li>The if statement sees empty_list (which is [])</li>
+            <li>Python converts [] to False automatically</li>
+            <li>Since the condition is False, Python skips the print statement entirely</li>
+            <li>Nothing gets printed to the screen</li>
+        </ul>
+    </div>
+
+    <div class="code-block">
+        <span class="comment"># Now let's try with a non-empty list:</span><br>
+        <span class="keyword">if</span> full_list:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"This line will actually run!"</span>)
+    </div>
+
+    <div class="outcome">
+        <strong>What actually happens:</strong>
+        <ul>
+            <li>The if statement sees full_list (which is [1, 2, 3])</li>
+            <li>Python converts [1, 2, 3] to True automatically</li>
+            <li>Since the condition is True, Python executes the print statement</li>
+            <li>"This line will actually run!" appears on the screen</li>
+        </ul>
+    </div>
+
+    <h2>Case File #2: The For Loop Secret</h2>
+    <div class="story">
+        <p>"Here's a common rookie mistake," Detective Boolean explains. "Some try to check if a list is empty before looping. But Python's already got that covered!"</p>
+    </div>
+
+    <div class="code-block">
+        <span class="comment"># You don't need to do this:</span><br>
+        items = []<br>
+        <span class="keyword">if</span> items:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span> item <span class="keyword">in</span> items:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(item)
+    </div>
+
+    <div class="outcome">
+        <strong>What actually happens:</strong>
+        <ul>
+            <li>First, items is an empty list []</li>
+            <li>The if statement converts [] to False</li>
+            <li>The for loop never runs because the if statement was False</li>
+            <li>Nothing gets printed</li>
+        </ul>
+    </div>
+
+    <div class="code-block">
+        <span class="comment"># Do this instead - Python handles empty lists automatically:</span><br>
+        items = []<br>
+        <span class="keyword">for</span> item <span class="keyword">in</span> items:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(item)
+    </div>
+
+    <div class="outcome">
+        <strong>What actually happens:</strong>
+        <ul>
+            <li>items is an empty list []</li>
+            <li>The for loop sees there's nothing to iterate over</li>
+            <li>The loop body never runs - Python handles this automatically!</li>
+            <li>Nothing gets printed, but our code is simpler</li>
+        </ul>
+    </div>
+
+    <h2>Practice Cases for Junior Detectives</h2>
+    <div class="story">
+        <p>"Time to test your skills! Open your Jupyter notebooks and solve these cases:"</p>
+    </div>
+
+    <div class="exercise">
+        <h3>Case #1: The Missing Inventory</h3>
+        <p>You're building an inventory system for a small shop. Write a function that takes a list of items and returns:</p>
+        <ul>
+            <li>"Items in stock!" if the list has any items</li>
+            <li>"Out of stock!" if the list is empty</li>
+        </ul>
+        
+        <div class="jupyter-cell">
+            <span class="keyword">def</span> check_inventory(items):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># Your code here</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">pass</span>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h3>Case #2: The Message System</h3>
+        <p>You're building a messaging system. Write a function that takes a list of unread messages and returns:</p>
+        <ul>
+            <li>"You have messages!" if the list contains any messages</li>
+            <li>"All Clear" if the list is empty</li>
+        </ul>
+        
+        <div class="jupyter-cell">
+            <span class="keyword">def</span> check_messages(unread_messages):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># Your code here</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">pass</span>
+        </div>
+    </div>
+
+    <div class="key-point">
+        <strong>Detective's Final Tips:</strong>
+        <ul>
+            <li>Empty containers ([], {}, ()) are automatically converted to False in if statements</li>
+            <li>Non-empty containers are automatically converted to True in if statements</li>
+            <li>Empty strings ("") become False, non-empty strings become True</li>
+            <li>For loops handle empty containers automatically - no need for an if statement check!</li>
+        </ul>
+    </div>
+</body>
+</html>
